@@ -21,3 +21,9 @@ export const getComments = (article_id) => {
     return data;
   });
 };
+
+export const updateVoteCount = (article_id, vote) => {
+  return api.patch(`/articles/${article_id}`, vote).then(({ data }) => {
+    return data;
+  });
+};

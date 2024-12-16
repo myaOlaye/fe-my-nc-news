@@ -3,6 +3,7 @@ import { getArticle } from "../api";
 import { useEffect, useState } from "react";
 import { Comments } from "./Comments";
 import { CommentsProvider } from "../contexts/CommentsContext";
+import { Votes } from "./Votes";
 
 export const Article = () => {
   const [article, setArticle] = useState({});
@@ -28,7 +29,12 @@ export const Article = () => {
           <p>{article.author}</p>
           <p>{article.created_at}</p>
           <p>Topic: {article.topic}</p>
-          <p>{article.body}</p>{" "}
+          <p>{article.body}</p>
+          <Votes
+            article_id={article_id}
+            votes={article.votes}
+            setArticle={setArticle}
+          />
         </>
       )}
       <CommentsProvider>
