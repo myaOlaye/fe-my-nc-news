@@ -3,12 +3,20 @@ import "./App.css";
 import "bootswatch/dist/darkly/bootstrap.min.css";
 import { Header } from "./components/Header";
 import { Articles } from "./components/Articles";
+import { Article } from "./components/Article";
+import { Routes, Route } from "react-router-dom";
 
 function App() {
   return (
     <>
       <Header />
-      <Articles />
+      <Routes>
+        <Route path="/" element={<Articles />}></Route>
+        <Route
+          path="/articles/:article_id/:title"
+          element={<Article />}
+        ></Route>
+      </Routes>
     </>
   );
 }

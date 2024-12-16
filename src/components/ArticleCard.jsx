@@ -1,6 +1,7 @@
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
 import React from "react";
+import { Link } from "react-router-dom";
 
 export const ArticleCard = ({ article }) => {
   return (
@@ -15,7 +16,9 @@ export const ArticleCard = ({ article }) => {
           <br></br>
           Topic: {article.topic}
         </Card.Text>
-        <Button variant="primary">See more</Button>
+        <Link to={`/articles/${article.article_id}/${article.title}`}>
+          <Button variant="primary">See more</Button>
+        </Link>
       </Card.Body>
     </Card>
   );
