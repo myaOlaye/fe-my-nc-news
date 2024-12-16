@@ -10,8 +10,14 @@ export const getArticles = () => {
   });
 };
 
-export const getArticle = (article_id, title) => {
+export const getArticle = (article_id) => {
   return api(`/articles/${article_id}`).then(({ data }) => {
+    return data;
+  });
+};
+
+export const getComments = (article_id) => {
+  return api(`/articles/${article_id}/comments`).then(({ data }) => {
     return data;
   });
 };
