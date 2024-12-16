@@ -1,15 +1,17 @@
 import { useParams } from "react-router-dom";
 import { getArticle } from "../api";
 import { useEffect, useState } from "react";
+import { Comments } from "./Comments";
+import { CommentsProvider } from "../contexts/CommentsContext";
 
 export const Article = () => {
   const [article, setArticle] = useState({});
-  const { article_id, title } = useParams();
+  const { article_id } = useParams();
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     setIsLoading(true);
-    getArticle(article_id, title).then(({ article }) => {
+    getArticle(article_id).then(({ article }) => {
       setArticle(article);
       setIsLoading(false);
     });
@@ -29,6 +31,9 @@ export const Article = () => {
           <p>{article.body}</p>{" "}
         </>
       )}
+      <CommentsProvider>
+        <Comments article_id={article_id} />
+      </CommentsProvider>
     </section>
   );
 };
