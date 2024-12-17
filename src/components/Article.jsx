@@ -3,6 +3,7 @@ import { getArticle } from "../api";
 import { useEffect, useState } from "react";
 import { Comments } from "./Comments";
 import { CommentsProvider } from "../contexts/CommentsContext";
+import { CommentFeedbackProvider } from "../contexts/CommentFeedbackContext";
 import { Votes } from "./Votes";
 
 export const Article = () => {
@@ -36,7 +37,9 @@ export const Article = () => {
             setArticle={setArticle}
           />
           <CommentsProvider>
-            <Comments article_id={article_id} />
+            <CommentFeedbackProvider>
+              <Comments article_id={article_id} />
+            </CommentFeedbackProvider>
           </CommentsProvider>
         </>
       )}
