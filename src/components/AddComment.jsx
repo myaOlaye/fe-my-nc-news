@@ -1,29 +1,31 @@
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
+import { Alert } from "react-bootstrap";
 import InputGroup from "react-bootstrap/InputGroup";
-import { useContext, useState, useEffect } from "react";
+import { useContext, useState } from "react";
 import { CommentsContext } from "../contexts/CommentsContext";
+import { CommentFeedbackContext } from "../contexts/CommentFeedbackContext";
 import { postComment } from "../api";
 
 export const AddComment = ({ article_id }) => {
   const [commentInput, setCommentInput] = useState("");
   const { setComments } = useContext(CommentsContext);
-  const [uploadMessage, setUploadMessage] = useState(null);
-  const [isUploading, setIsUploading] = useState(false);
+  const { commentFeedback, setCommentFeedback } = useContext(
+    CommentFeedbackContext
+  );
 
   const handleChange = (e) => {
     setCommentInput(e.target.value);
-    setUploadMessage(null);
+    setCommentFeedback("");
   };
 
   const uploadComment = (e) => {
     e.preventDefault();
 
     if (commentInput === "") {
-      setUploadMessage("Please type a valid comment before posting");
+      setCommentFeedback("Please type a valid comment before posting");
     } else {
-      setUploadMessage("Your comment is uploading...");
-      setIsUploading(true);
+      setCommentFeedback("Your comment is uploading...");
 
       const newComment = {
         username: "tickle122",
@@ -33,18 +35,17 @@ export const AddComment = ({ article_id }) => {
       postComment(article_id, newComment)
         .then((comment) => {
           setComments((currComments) => {
-            setUploadMessage("Comment succesfully posted!");
-
+            setCommentFeedback("Comment succesfully posted!");
             return [...currComments, comment];
           });
         })
         .catch((err) => {
-          setUploadMessage("Your comment failed to upload. Please try again!");
+          setCommentFeedback(
+            "Your comment failed to upload. Please try again!"
+          );
           console.log(err);
-        })
-        .finally(() => {
-          setIsUploading(false);
         });
+      setCommentInput("");
     }
   };
 
@@ -63,12 +64,12 @@ export const AddComment = ({ article_id }) => {
           variant="outline-secondary"
           id="button-addon2"
           onClick={uploadComment}
-          disabled={isUploading}
+          disabled={commentFeedback === "Your comment is uploading..."}
         >
           Post
         </Button>
       </InputGroup>
-      {uploadMessage ? <p>{uploadMessage}</p> : null}
+      {commentFeedback && <Alert variant="secondary">{commentFeedback}</Alert>}
     </>
   );
 };
