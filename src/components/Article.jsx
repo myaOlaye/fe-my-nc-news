@@ -35,11 +35,11 @@ export const Article = () => {
             votes={article.votes}
             setArticle={setArticle}
           />
+          <CommentsProvider>
+            <Comments article_id={article_id} />
+          </CommentsProvider>
         </>
       )}
-      <CommentsProvider>
-        <Comments article_id={article_id} />
-      </CommentsProvider>
     </section>
   );
 };
