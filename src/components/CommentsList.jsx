@@ -4,7 +4,6 @@ import { getComments } from "../api";
 import { Comment } from "./Comment";
 
 export const CommentsList = ({ article_id }) => {
-  console.log();
   const { comments, setComments } = useContext(CommentsContext);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -18,11 +17,10 @@ export const CommentsList = ({ article_id }) => {
       .catch((err) => {
         console.log(err);
       });
-  }, []);
+  }, [comments]);
 
   return (
     <>
-      <h3>Comments</h3>
       {comments.map((comment) => {
         return <Comment key={comment.comment_id} comment={comment} />;
       })}
