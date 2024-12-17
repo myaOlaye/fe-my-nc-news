@@ -4,8 +4,10 @@ const api = axios.create({
   baseURL: "https://myas-news-api.onrender.com/api",
 });
 
-export const getArticles = () => {
-  return api("/articles").then(({ data }) => {
+export const getArticles = (topic) => {
+  console.dir(topic);
+  const url = `/articles${topic ? `?topic=${topic}` : ""}`;
+  return api(url).then(({ data }) => {
     return data;
   });
 };
@@ -38,4 +40,10 @@ export const postComment = (article_id, newComment) => {
 
 export const deleteComment = (comment_id) => {
   return api.delete(`/comments/${comment_id}`);
+};
+
+export const getTopics = () => {
+  return api(`/topics`).then(({ data }) => {
+    return data;
+  });
 };

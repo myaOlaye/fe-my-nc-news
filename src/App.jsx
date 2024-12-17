@@ -4,6 +4,7 @@ import "bootswatch/dist/darkly/bootstrap.min.css";
 import { Header } from "./components/Header";
 import { Articles } from "./components/Articles";
 import { Article } from "./components/Article";
+import { Topic } from "./components/Topic";
 import { Routes, Route } from "react-router-dom";
 
 function App() {
@@ -16,6 +17,7 @@ function App() {
           path="/articles/:article_id/:title"
           element={<Article />}
         ></Route>
+        <Route path="articles/:topic" element={<Topic />}></Route>
       </Routes>
     </>
   );
