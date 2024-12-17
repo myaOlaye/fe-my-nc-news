@@ -3,13 +3,13 @@ import { useState, useEffect } from "react";
 import { getArticles } from "../api";
 import { ArticleCard } from "./ArticleCard";
 
-export const ArticleList = () => {
+export const ArticleList = ({ topic }) => {
   const [articles, setArticles] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     setIsLoading(true);
-    getArticles()
+    getArticles(topic)
       .then(({ articles }) => {
         setArticles(articles);
         setIsLoading(false);
@@ -21,7 +21,6 @@ export const ArticleList = () => {
 
   return (
     <>
-      <h2>All Articles</h2>
       {isLoading ? (
         <p>Loading</p>
       ) : (
