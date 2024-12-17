@@ -9,6 +9,7 @@ export const AddComment = ({ article_id }) => {
   const [commentInput, setCommentInput] = useState("");
   const { setComments } = useContext(CommentsContext);
   const [uploadMessage, setUploadMessage] = useState(null);
+  const [isUploading, setIsUploading] = useState(false);
 
   const handleChange = (e) => {
     setCommentInput(e.target.value);
@@ -22,6 +23,7 @@ export const AddComment = ({ article_id }) => {
       setUploadMessage("Please type a valid comment before posting");
     } else {
       setUploadMessage("Your comment is uploading...");
+      setIsUploading(true);
 
       const newComment = {
         username: "tickle122",
@@ -32,12 +34,16 @@ export const AddComment = ({ article_id }) => {
         .then((comment) => {
           setComments((currComments) => {
             setUploadMessage("Comment succesfully posted!");
+
             return [...currComments, comment];
           });
         })
         .catch((err) => {
           setUploadMessage("Your comment failed to upload. Please try again!");
           console.log(err);
+        })
+        .finally(() => {
+          setIsUploading(false);
         });
     }
   };
@@ -57,6 +63,7 @@ export const AddComment = ({ article_id }) => {
           variant="outline-secondary"
           id="button-addon2"
           onClick={uploadComment}
+          disabled={isUploading}
         >
           Post
         </Button>
@@ -65,21 +72,3 @@ export const AddComment = ({ article_id }) => {
     </>
   );
 };
-
-{
-  /* <form className="Add-events" onSubmit={handleSubmit}>
-  <h2>Pick a City</h2>
-  <label htmlFor="city-input"></label>
-  <input
-    name="cityInput"
-    type="text"
-    placeholder="Type a city"
-    id="city-input"
-    value={cityInput}
-    onChange={handleChange}
-  />
-  <Button variant="info" type="submit">
-    Search
-  </Button>
-</form>; */
-}
