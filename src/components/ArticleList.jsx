@@ -3,13 +3,13 @@ import { useState, useEffect } from "react";
 import { getArticles } from "../api";
 import { ArticleCard } from "./ArticleCard";
 
-export const ArticleList = ({ topic }) => {
+export const ArticleList = ({ topic, searchParams }) => {
   const [articles, setArticles] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     setIsLoading(true);
-    getArticles(topic)
+    getArticles(topic, searchParams)
       .then(({ articles }) => {
         setArticles(articles);
         setIsLoading(false);
@@ -17,7 +17,7 @@ export const ArticleList = ({ topic }) => {
       .catch((err) => {
         console.log(err);
       });
-  }, []);
+  }, [searchParams]);
 
   return (
     <>

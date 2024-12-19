@@ -4,9 +4,12 @@ const api = axios.create({
   baseURL: "https://myas-news-api.onrender.com/api",
 });
 
-export const getArticles = (topic) => {
-  console.dir(topic);
-  const url = `/articles${topic ? `?topic=${topic}` : ""}`;
+export const getArticles = (topic, searchParams) => {
+  const sortByQuery = searchParams.get("sort_by");
+  const orderByQuery = searchParams.get("order");
+  const url = `/articles${
+    topic ? `?topic=${topic}&` : "?"
+  }sort_by=${sortByQuery}&order=${orderByQuery}`;
   return api(url).then(({ data }) => {
     return data;
   });
