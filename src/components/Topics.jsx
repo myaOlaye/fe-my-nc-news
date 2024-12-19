@@ -31,7 +31,7 @@ export const Topics = () => {
         {topics.map((topic) => {
           return (
             <Card style={{ width: "10rem" }} key={topic.slug}>
-              <Link to={`/articles/${topic.slug}`}>
+              <Link to={`/topic/${topic.slug}`}>
                 <Card.Title>{topic.slug}</Card.Title>
                 <Card.Subtitle className="mb-2 text-muted">
                   {topic.description}

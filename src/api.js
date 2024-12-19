@@ -11,7 +11,6 @@ export const getArticles = (topic, searchParams) => {
   const url = `/articles${
     topic ? `?topic=${topic}&` : "?"
   }sort_by=${sortByQuery}&order=${orderByQuery}`;
-  console.log(url);
   return api(url).then(({ data }) => {
     return data;
   });

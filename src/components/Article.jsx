@@ -10,19 +10,29 @@ export const Article = () => {
   const [article, setArticle] = useState({});
   const { article_id } = useParams();
   const [isLoading, setIsLoading] = useState(false);
+  const [isError, setIsError] = useState(false);
 
   useEffect(() => {
+    setIsError(false);
     setIsLoading(true);
-    getArticle(article_id).then(({ article }) => {
-      setArticle(article);
-      setIsLoading(false);
-    });
+    getArticle(article_id)
+      .then(({ article }) => {
+        setArticle(article);
+        setIsLoading(false);
+      })
+      .catch((err) => {
+        setIsError(true);
+        setIsLoading(false);
+        console.log(err);
+      });
   }, []);
 
   return (
     <section>
       {isLoading ? (
         <p>Loading</p>
+      ) : isError ? (
+        <p>404: Article does not exist</p>
       ) : (
         <>
           {" "}

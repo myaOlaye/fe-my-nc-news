@@ -16,7 +16,7 @@ export const ArticleCard = ({ article }) => {
           <br></br>
           Topic: {article.topic}
         </Card.Text>
-        <Link to={`/articles/${article.article_id}/${article.title}`}>
+        <Link to={`/articles/${article.article_id}`}>
           <Button variant="primary">See more</Button>
         </Link>
       </Card.Body>
