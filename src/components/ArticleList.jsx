@@ -15,7 +15,7 @@ export const ArticleList = ({ topic, searchParams }) => {
         setIsLoading(false);
       })
       .catch((err) => {
-        console.log(err);
+        console.log(err, "<--err msg");
       });
   }, [searchParams]);
 

@@ -7,9 +7,11 @@ const api = axios.create({
 export const getArticles = (topic, searchParams) => {
   const sortByQuery = searchParams.get("sort_by");
   const orderByQuery = searchParams.get("order");
+  console.log(topic);
   const url = `/articles${
     topic ? `?topic=${topic}&` : "?"
   }sort_by=${sortByQuery}&order=${orderByQuery}`;
+  console.log(url);
   return api(url).then(({ data }) => {
     return data;
   });
