@@ -6,6 +6,8 @@ This project is a social news aggregation platform where users can explore artic
 
 The application itself is developed using React. It allows users to add, edit, and manage articles and comments.
 
+*Please note, the styling is a work in progress!
+
 # How to Run This Project Locally
 
 ## Prerequisites
