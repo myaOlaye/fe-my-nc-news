@@ -1,6 +1,4 @@
-import { useState } from "react";
 import "./App.css";
-import "bootswatch/dist/darkly/bootstrap.min.css";
 import { Header } from "./components/Header";
 import { ErrorPage } from "./components/ErrorPage";
 import { Articles } from "./components/Articles";

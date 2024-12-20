@@ -17,15 +17,15 @@ export const Topics = () => {
   }, []);
 
   return (
-    <>
-      <h3>Topics</h3>
+    <section className="container topics">
+      <h3 style={{ textAlign: "left" }}>View articles by topic</h3>
       <div
         style={{
           display: "flex",
           gap: "1rem",
           flexWrap: "wrap",
-          justifyContent: "center",
-          margin: "3rem",
+          justifyContent: "start",
+          marginTop: "3rem",
         }}
       >
         {topics.map((topic) => {
@@ -33,14 +33,11 @@ export const Topics = () => {
             <Card style={{ width: "10rem" }} key={topic.slug}>
               <Link to={`/topic/${topic.slug}`}>
                 <Card.Title>{topic.slug}</Card.Title>
-                <Card.Subtitle className="mb-2 text-muted">
-                  {topic.description}
-                </Card.Subtitle>
               </Link>
             </Card>
           );
         })}
       </div>
-    </>
+    </section>
   );
 };

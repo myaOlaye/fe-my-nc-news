@@ -12,8 +12,10 @@ export const Articles = () => {
   return (
     <section>
       <Topics />
-      <h2>All Articles</h2>
+      <hr></hr>
+      <h2 style={{ margin: "1rem" }}>All Articles</h2>
       <ArticleFilter
+        className="article-filter"
         searchParams={searchParams}
         setSearchParams={setSearchParams}
       />

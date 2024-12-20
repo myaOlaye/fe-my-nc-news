@@ -21,23 +21,27 @@ export const Comment = ({ comment }) => {
   };
 
   return (
-    <>
-      <Card>
-        <ListGroup className="list-group-flush">
-          <ListGroup.Item>{comment.author}</ListGroup.Item>
-          <ListGroup.Item> {comment.created_at}</ListGroup.Item>
+    <section>
+      <Card style={{ borderRadius: "0" }} className="text-start">
+        <ListGroup className="container list-group-flush flex justify-content-start ">
+          <ListGroup.Item>
+            <strong>{comment.author}</strong> -{" "}
+            <span>
+              {new Date(comment.created_at).toLocaleDateString()} at{" "}
+              {new Date(comment.created_at).toLocaleTimeString([], {
+                hour: "2-digit",
+                minute: "2-digit",
+              })}
+            </span>
+          </ListGroup.Item>
         </ListGroup>
-        <Card.Body>
-          {comment.body}
-          <br></br>
-          Votes: {comment.votes}
-        </Card.Body>
+        <Card.Body>{comment.body}</Card.Body>
         {user === comment.author ? (
-          <Button variant="danger" onClick={handleDelete}>
+          <Button variant="dark" onClick={handleDelete}>
             Delete
           </Button>
         ) : null}
       </Card>
-    </>
+    </section>
   );
 };

@@ -37,10 +37,14 @@ export const Article = () => {
         <>
           {" "}
           <h2>{article.title}</h2>
-          <p>{article.author}</p>
-          <p>{article.created_at}</p>
-          <p>Topic: {article.topic}</p>
-          <p>{article.body}</p>
+          <p>
+            by {article.author} on{" "}
+            {new Date(article.created_at).toLocaleDateString()}
+          </p>
+          <img src={article.article_img_url} className="mb-4" />
+          <p style={{ textAlign: "left" }} className="m-3">
+            {article.body}
+          </p>
           <Votes
             article_id={article_id}
             votes={article.votes}

@@ -51,7 +51,7 @@ export const AddComment = ({ article_id }) => {
 
   return (
     <>
-      <InputGroup className="mb-3">
+      <InputGroup className="mb-3 container">
         <Form.Control
           value={commentInput}
           id="comment-input"
@@ -61,7 +61,7 @@ export const AddComment = ({ article_id }) => {
           onChange={handleChange}
         />
         <Button
-          variant="outline-secondary"
+          variant="dark"
           id="button-addon2"
           onClick={uploadComment}
           disabled={commentFeedback === "Your comment is uploading..."}

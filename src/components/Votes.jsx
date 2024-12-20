@@ -32,17 +32,22 @@ export const Votes = ({ article_id, votes, setArticle }) => {
   };
 
   return (
-    <>
+    <section className="container mb-5">
       <p>
         Votes <Badge>{voteCount}</Badge>
       </p>
-      <Button name="vote-up" onClick={handleClick}>
+      <Button
+        name="vote-up"
+        onClick={handleClick}
+        style={{ width: "20%" }}
+        className="me-1"
+      >
         Vote Up
       </Button>
-      <Button name="vote-down" onClick={handleClick}>
+      <Button name="vote-down" onClick={handleClick} style={{ width: "20%" }}>
         Vote Down
       </Button>
       {voteError ? <p>{voteError}</p> : null}
-    </>
+    </section>
   );
 };

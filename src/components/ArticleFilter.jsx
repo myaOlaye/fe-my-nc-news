@@ -20,8 +20,13 @@ export const ArticleFilter = ({ searchParams, setSearchParams }) => {
   };
 
   return (
-    <>
-      <DropdownButton id="dropdown-basic-button" title="Sort Articles">
+    <div className="d-flex align-items-center justify-content-center container">
+      <DropdownButton
+        id="dropdown-basic-button"
+        title="Sort Articles"
+        className="me-3"
+        variant="secondary"
+      >
         <Dropdown.Item
           onClick={() => {
             setSortBy("created_at");
@@ -41,6 +46,7 @@ export const ArticleFilter = ({ searchParams, setSearchParams }) => {
         <ToggleButton
           id="tbg-radio-1"
           value={1}
+          variant="secondary"
           onClick={() => {
             setOrderBy("desc");
           }}
@@ -50,6 +56,7 @@ export const ArticleFilter = ({ searchParams, setSearchParams }) => {
         <ToggleButton
           id="tbg-radio-2"
           value={2}
+          variant="secondary"
           onClick={() => {
             setOrderBy("asc");
           }}
@@ -57,6 +64,6 @@ export const ArticleFilter = ({ searchParams, setSearchParams }) => {
           asc
         </ToggleButton>
       </ToggleButtonGroup>
-    </>
+    </div>
   );
 };
