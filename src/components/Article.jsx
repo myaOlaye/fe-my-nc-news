@@ -5,6 +5,7 @@ import { Comments } from "./Comments";
 import { CommentsProvider } from "../contexts/CommentsContext";
 import { CommentFeedbackProvider } from "../contexts/CommentFeedbackContext";
 import { Votes } from "./Votes";
+import { Spinner } from "react-bootstrap";
 
 export const Article = () => {
   const [article, setArticle] = useState({});
