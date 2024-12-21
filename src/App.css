@@ -34,3 +34,22 @@ header {
   height: 4.5rem;
   margin-bottom: 30px;
 }
+
+@media (min-width: 768px) {
+  .card-container {
+    display: flex;
+    flex-direction: row; /* Align items horizontally */
+    gap: 2rem; /* Add space between the image and text */
+    align-items: flex-start; /* Align items at the top */
+  }
+
+  .card-image {
+    flex: 1; /* Allow the image to take up one part of the space */
+    max-width: 40%; /* Restrict the image width */
+    height: auto; /* Maintain aspect ratio */
+  }
+
+  .card-content {
+    flex: 2; /* Allow the content to take up the remaining space */
+  }
+}

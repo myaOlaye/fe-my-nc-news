@@ -21,22 +21,31 @@ export const Header = () => {
         </Link>
       </h1>
 
-      <Col xs={6} md={4} style={{ textAlign: "right" }}>
+      <div
+        style={{
+          display: "flex",
+          alignItems: "center",
+          textAlign: "right",
+          marginRight: "2rem",
+        }}
+      >
         <Image
-          src="https://vignette.wikia.nocookie.net/mrmen/images/d/d6/Mr-Tickle-9a.png/revision/latest?cb=20180127221953"
+          src="https://static.vecteezy.com/system/resources/previews/009/292/244/non_2x/default-avatar-icon-of-social-media-user-vector.jpg"
           roundedCircle
           style={{
             width: "35px",
             height: "35px",
             border: "0.5px solid black",
             backgroundColor: "white",
+            marginRight: "0.5rem",
           }}
         />
-      </Col>
-      <p style={{ fontSize: "10px", marginRight: "2rem", marginTop: "1rem" }}>
-        Logged in as <br />
-        {user}
-      </p>
+
+        <p style={{ fontSize: "10px", margin: 0 }}>
+          Logged in as <br />
+          {user}
+        </p>
+      </div>
     </header>
   );
 };

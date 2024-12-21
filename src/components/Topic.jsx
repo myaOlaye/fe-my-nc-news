@@ -11,7 +11,7 @@ export const Topic = () => {
 
   return (
     <>
-      <h2>{topic} Articles</h2>
+      <h2 style={{ margin: "1rem" }}>{topic} Articles</h2>
       <ArticleFilter
         setSearchParams={setSearchParams}
         searchParams={searchParams}

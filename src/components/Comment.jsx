@@ -22,8 +22,11 @@ export const Comment = ({ comment }) => {
 
   return (
     <section>
-      <Card style={{ borderRadius: "0" }} className="text-start">
-        <ListGroup className="container list-group-flush flex justify-content-start ">
+      <Card
+        style={{ borderRadius: "0" }}
+        className="text-start container list-group-flush flex"
+      >
+        <ListGroup>
           <ListGroup.Item>
             <strong>{comment.author}</strong> -{" "}
             <span>
@@ -37,7 +40,11 @@ export const Comment = ({ comment }) => {
         </ListGroup>
         <Card.Body>{comment.body}</Card.Body>
         {user === comment.author ? (
-          <Button variant="dark" onClick={handleDelete}>
+          <Button
+            onClick={handleDelete}
+            style={{ width: "150px" }}
+            className="align-self-end"
+          >
             Delete
           </Button>
         ) : null}
