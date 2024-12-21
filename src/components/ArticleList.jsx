@@ -2,6 +2,7 @@ import React from "react";
 import { useState, useEffect } from "react";
 import { getArticles } from "../api";
 import { ArticleCard } from "./ArticleCard";
+import { Spinner } from "react-bootstrap";
 
 export const ArticleList = ({ topic, searchParams }) => {
   const [articles, setArticles] = useState([]);
@@ -27,7 +28,11 @@ export const ArticleList = ({ topic, searchParams }) => {
   return (
     <>
       {isLoading ? (
-        <p>Loading</p>
+        <Spinner
+          animation="border"
+          variant="primary"
+          style={{ width: "3rem", height: "3rem", marginTop: "2rem" }}
+        />
       ) : isError ? (
         <p>404: Topic not found</p>
       ) : (
