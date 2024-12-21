@@ -30,7 +30,11 @@ export const Article = () => {
   return (
     <section>
       {isLoading ? (
-        <p>Loading</p>
+        <Spinner
+          animation="border"
+          variant="primary"
+          style={{ width: "3rem", height: "3rem", marginTop: "2rem" }}
+        />
       ) : isError ? (
         <p>404: Article does not exist</p>
       ) : (
