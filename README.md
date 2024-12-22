@@ -2,7 +2,7 @@
 
 Live version: <https://my-news-app-489224.netlify.app/>
 
-This project is a social news aggregation platform where users can explore articles categorized by topics, rate them through upvotes and downvotes, and contribute their perspectives via comments. I built the API ([find it here](<https://github.com/myaOlaye/nc-news-API>)) to handle the backend logic, enabling seamless interaction for CRUD (Create, Read, Update, Delete) operations.
+This project is a social news aggregation platform where users can explore articles categorized by topics, rate them through upvotes and downvotes, and leave comments. I built the API ([find it here](<https://github.com/myaOlaye/nc-news-API>)) to handle the backend logic, enabling seamless interaction for CRUD (Create, Read, Update, Delete) operations.
 
 The application itself is developed using React. It allows users to add, edit, and manage articles and comments.
 
