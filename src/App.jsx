@@ -3,7 +3,6 @@ import { Header } from "./components/Header";
 import { ErrorPage } from "./components/ErrorPage";
 import { Articles } from "./components/Articles";
 import { Article } from "./components/Article";
-import { Topic } from "./components/Topic";
 import { Routes, Route } from "react-router-dom";
 
 function App() {
@@ -15,7 +14,7 @@ function App() {
 
         <Route path="/" element={<Articles />}></Route>
         <Route path="/articles/:article_id" element={<Article />}></Route>
-        <Route path="/topic/:topic" element={<Topic />}></Route>
+        <Route path="/topic/:topic" element={<Articles />}></Route>
       </Routes>
     </>
   );

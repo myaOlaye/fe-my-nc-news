@@ -23,7 +23,7 @@ export const ArticleList = ({ topic, searchParams }) => {
 
         console.log(err, "<--err msg");
       });
-  }, [searchParams]);
+  }, [searchParams, topic]);
 
   return (
     <>

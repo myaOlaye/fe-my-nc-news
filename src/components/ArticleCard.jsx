@@ -19,13 +19,11 @@ export const ArticleCard = ({ article }) => {
           <Card.Title>{article.title}</Card.Title>
           <Card.Header>{article.topic}</Card.Header>
           <Card.Body style={{ textAlign: "left" }}>
-            <Card.Text>
-              <p>
-                By {article.author} on{" "}
-                {new Date(article.created_at).toLocaleDateString()}
-              </p>
-              <p>{article.comment_count} comments</p>
-            </Card.Text>
+            <p>
+              By {article.author} on{" "}
+              {new Date(article.created_at).toLocaleDateString()}
+            </p>
+            <p>{article.comment_count} comments</p>
             <div className="d-flex justify-content-center">
               <Link to={`/articles/${article.article_id}`}>
                 <Button variant="primary">Read more</Button>
