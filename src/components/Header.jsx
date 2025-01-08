@@ -1,8 +1,9 @@
 import { Link } from "react-router-dom";
-import Col from "react-bootstrap/Col";
-import Container from "react-bootstrap/Container";
-import Image from "react-bootstrap/Image";
-import Row from "react-bootstrap/Row";
+// import Col from "react-bootstrap/Col";
+// import Container from "react-bootstrap/Container";
+// import Image from "react-bootstrap/Image";
+// import Row from "react-bootstrap/Row";
+import { Button } from "react-bootstrap";
 
 export const Header = () => {
   const user = "tickle122";
@@ -20,32 +21,42 @@ export const Header = () => {
           NC News
         </Link>
       </h1>
-
-      <div
-        style={{
-          display: "flex",
-          alignItems: "center",
-          textAlign: "right",
-          marginRight: "2rem",
-        }}
-      >
-        <Image
-          src="https://static.vecteezy.com/system/resources/previews/009/292/244/non_2x/default-avatar-icon-of-social-media-user-vector.jpg"
-          roundedCircle
-          style={{
-            width: "35px",
-            height: "35px",
-            border: "0.5px solid black",
-            backgroundColor: "white",
-            marginRight: "0.5rem",
-          }}
-        />
-
-        <p style={{ fontSize: "10px", margin: 0 }}>
-          Logged in as <br />
-          {user}
-        </p>
+      <div style={{ display: "flex", gap: "10px", marginRight: "2rem" }}>
+        <Link to="/signup">
+          <Button variant="light">Sign up</Button>
+        </Link>
+        <Link to="/login">
+          <Button variant="light">Login</Button>
+        </Link>
       </div>
     </header>
   );
 };
+
+{
+  /* <div
+style={{
+  display: "flex",
+  alignItems: "center",
+  textAlign: "right",
+  marginRight: "2rem",
+}}
+>
+<Image
+  src="https://static.vecteezy.com/system/resources/previews/009/292/244/non_2x/default-avatar-icon-of-social-media-user-vector.jpg"
+  roundedCircle
+  style={{
+    width: "35px",
+    height: "35px",
+    border: "0.5px solid black",
+    backgroundColor: "white",
+    marginRight: "0.5rem",
+  }}
+/>
+
+<p style={{ fontSize: "10px", margin: 0 }}>
+  Logged in as <br />
+  {user}
+</p>
+</div> */
+}

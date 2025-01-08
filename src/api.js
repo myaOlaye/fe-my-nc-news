@@ -10,7 +10,6 @@ export const getArticles = (topic, searchParams) => {
   const url = `/articles${
     topic ? `?topic=${topic}&` : "?"
   }sort_by=${sortByQuery}&order=${orderByQuery}`;
-  console.log(url);
   return api(url).then(({ data }) => {
     return data;
   });
@@ -50,4 +49,31 @@ export const getTopics = () => {
   return api(`/topics`).then(({ data }) => {
     return data;
   });
+};
+
+export const createNewUser = (newUser) => {
+  if (!newUser.avatar_url) {
+    newUser.avatar_url =
+      "https://static.vecteezy.com/system/resources/previews/009/292/244/non_2x/default-avatar-icon-of-social-media-user-vector.jpg";
+  }
+
+  return api.post(`/users`, newUser).then(({ data }) => {
+    return data;
+  });
+};
+
+export const logInUser = (loginDetails) => {
+  return api
+    .post(`users/login`, loginDetails, { withCredentials: true })
+    .then(({ data }) => {
+      return data;
+    });
+};
+
+export const getUser = (username) => {
+  return api
+    .post(`users/${username}`, { withCredentials: true })
+    .then(({ data }) => {
+      return data;
+    });
 };
