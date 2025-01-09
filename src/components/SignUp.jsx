@@ -25,6 +25,7 @@ export const SignUp = () => {
     usernameInput: "",
     passwordInput: "",
   });
+  const [error, setError] = useState("");
 
   const navigate = useNavigate();
 
@@ -50,7 +51,13 @@ export const SignUp = () => {
       })
       .catch((err) => {
         setCreatingUser(false);
-        console.log(err);
+        if (err.status === 500) {
+          setError("Something went wrong, please try again later.");
+        }
+        if (err.status === 409) {
+          console.log("in 409 if");
+          setError(err.response.data.msg);
+        }
       });
   };
 
@@ -118,6 +125,7 @@ export const SignUp = () => {
             style={{ borderRadius: "6px", padding: "10px" }}
           />
         </Form.Group>
+        {error && <p>{error}</p>}
 
         <div style={{ textAlign: "center", marginTop: "20px" }}>
           {creatingUser ? (

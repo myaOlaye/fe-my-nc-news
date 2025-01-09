@@ -4,31 +4,100 @@ import { Link } from "react-router-dom";
 // import Image from "react-bootstrap/Image";
 // import Row from "react-bootstrap/Row";
 import { Button } from "react-bootstrap";
+import { AuthContext } from "../contexts/AuthProvider";
+import { useContext, useState } from "react";
+import { jwtDecode } from "jwt-decode";
+import { logout } from "../api";
+import { Alert } from "react-bootstrap";
 
 export const Header = () => {
-  const user = "tickle122";
+  const { auth, setAuth } = useContext(AuthContext);
+  const [logoutMessage, setLogoutMessage] = useState("");
+
+  let username = "";
+
+  if (Object.keys(auth).length !== 0) {
+    const decodedToken = jwtDecode(auth.accessToken);
+    username = decodedToken.username;
+  }
+
+  //This currently not working properly - users log out but when refresh logs straight back in
+  // Cookies not clearing properly - worked iin insomnia! figure out
+  const handleLogout = (e) => {
+    setAuth({});
+    logout()
+      .then((response) => {
+        console.log(response);
+        setLogoutMessage("Successfully logged out!");
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
   return (
     <header
       className="bg-primary text-white py-3"
       style={{
         display: "flex",
-        justifyContent: "space-between",
+        flexDirection: "column",
         alignItems: "center",
+        padding: "0 2rem",
       }}
     >
-      <h1 style={{ textAlign: "left", marginLeft: "3rem" }}>
-        <Link to="/" className="page-title">
-          NC News
-        </Link>
-      </h1>
-      <div style={{ display: "flex", gap: "10px", marginRight: "2rem" }}>
-        <Link to="/signup">
-          <Button variant="light">Sign up</Button>
-        </Link>
-        <Link to="/login">
-          <Button variant="light">Login</Button>
-        </Link>
+      <div
+        style={{
+          width: "100%",
+          display: "flex",
+          justifyContent: "space-between",
+          alignItems: "center",
+        }}
+      >
+        <h1 style={{ textAlign: "left" }}>
+          <Link
+            to="/"
+            className="page-title"
+            style={{ textDecoration: "none", color: "white" }}
+          >
+            NC News
+          </Link>
+        </h1>
+        <div style={{ display: "flex", gap: "1rem", alignItems: "center" }}>
+          {username ? (
+            <>
+              <p style={{ margin: 0 }}>Welcome back, {auth.username}!</p>
+              <Link to="/account">
+                <Button variant="light">Go to Account</Button>
+              </Link>
+              <Button variant="light" onClick={handleLogout}>
+                Logout
+              </Button>
+            </>
+          ) : (
+            <>
+              <Link to="/signup">
+                <Button variant="light">Sign up</Button>
+              </Link>
+              <Link to="/login">
+                <Button variant="light">Login</Button>
+              </Link>
+            </>
+          )}
+        </div>
       </div>
+      {logoutMessage && (
+        <Alert
+          variant="secondary"
+          style={{
+            marginTop: "1rem",
+            width: "100%",
+            textAlign: "center",
+            padding: "0.5rem 1rem",
+          }}
+        >
+          {logoutMessage}
+        </Alert>
+      )}
     </header>
   );
 };

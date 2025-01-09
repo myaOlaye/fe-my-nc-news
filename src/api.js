@@ -70,10 +70,26 @@ export const logInUser = (loginDetails) => {
     });
 };
 
-export const getUser = (username) => {
+export const getUser = (username, accessToken) => {
   return api
-    .post(`users/${username}`, { withCredentials: true })
+    .get(`users/${username}`, {
+      headers: {
+        Authorization: `Bearer ${accessToken}`, // Add the Authorization header
+      },
+    })
     .then(({ data }) => {
       return data;
     });
+};
+
+export const refreshAccessToken = () => {
+  return api
+    .get(`users/refresh`, { withCredentials: true })
+    .then(({ data: { accessToken } }) => {
+      return accessToken;
+    });
+};
+
+export const logout = () => {
+  return api.post(`users/logout`, { withCredentials: true });
 };

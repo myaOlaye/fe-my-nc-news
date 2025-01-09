@@ -1,14 +1,16 @@
-import { useState, useContext } from "react";
+import { useState, useContext, useEffect } from "react";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import { Link } from "react-router-dom";
 import { logInUser } from "../api";
 import { AuthContext } from "../contexts/AuthProvider";
+import { useNavigate } from "react-router-dom";
 
 export const Login = () => {
   const { setAuth, auth } = useContext(AuthContext);
   const [error, setError] = useState("");
-  const [success, setSuccess] = useState(false);
+
+  const navigate = useNavigate();
 
   const [loginFormData, setLoginFormData] = useState({
     usernameInput: "",
@@ -30,14 +32,11 @@ export const Login = () => {
 
     logInUser(loginDetails)
       .then(({ accessToken }) => {
-        setSuccess(true);
         setAuth({
           username: loginDetails.username,
-          password: loginDetails.password,
           accessToken,
         });
-        console.log(success);
-        console.log(auth);
+        navigate("/account");
       })
       .catch((err) => {
         if (err.status === 404) {
@@ -49,11 +48,19 @@ export const Login = () => {
       });
   };
 
+  // useEffect(() => {
+  //   console.log("Success updated:", success);
+  // }, [success]);
+
+  // useEffect(() => {
+  //   console.log("Auth updated:", auth);
+  // }, [auth]);
+
   return (
     <>
-      <h2>Log in to your account</h2>
+      <h2 style={{ marginTop: "4rem" }}>Log in to your account</h2>
 
-      {success ? (
+      {auth.username ? (
         <>
           <p> You are logged in!</p>
           <Link to="/account">
