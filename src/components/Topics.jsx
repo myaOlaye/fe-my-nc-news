@@ -23,7 +23,7 @@ export const Topics = () => {
 
   return (
     <section className="container topics">
-      <h3 style={{ textAlign: "left" }}>View articles by topic</h3>
+      <h3 style={{ textAlign: "left" }}>Trending Topics</h3>
       {isLoading ? (
         <Spinner
           animation="border"

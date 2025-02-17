@@ -7,8 +7,7 @@
   --button-color: #e74c3c; /* Red */
   --link-color: #2980b9; /* Lighter blue for links */
 
-  max-width: 1280px;
-  margin: 0 auto;
+  margin: 0;
   text-align: center;
   box-sizing: border-box;
 }
@@ -31,7 +30,7 @@ h3 {
 }
 
 header {
-  height: 4.5rem;
+  height: 5rem;
   margin-bottom: 30px;
 }
 

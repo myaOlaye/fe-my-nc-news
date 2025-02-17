@@ -1,11 +1,12 @@
 import { useContext } from "react";
+import { AuthContext } from "../contexts/AuthProvider";
 import { Card, Button } from "react-bootstrap";
 import { ListGroup } from "react-bootstrap";
 import { deleteComment } from "../api";
 import { CommentFeedbackContext } from "../contexts/CommentFeedbackContext";
 
 export const Comment = ({ comment }) => {
-  const user = "tickle122";
+  const { auth } = useContext(AuthContext);
   const { setCommentFeedback } = useContext(CommentFeedbackContext);
 
   const handleDelete = () => {
@@ -39,7 +40,7 @@ export const Comment = ({ comment }) => {
           </ListGroup.Item>
         </ListGroup>
         <Card.Body>{comment.body}</Card.Body>
-        {user === comment.author ? (
+        {auth.username === comment.author ? (
           <Button
             onClick={handleDelete}
             style={{ width: "150px" }}

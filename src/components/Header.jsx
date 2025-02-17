@@ -9,6 +9,7 @@ import { useContext, useState } from "react";
 import { jwtDecode } from "jwt-decode";
 import { logout } from "../api";
 import { Alert } from "react-bootstrap";
+import { FaUser, FaSignOutAlt } from "react-icons/fa";
 
 export const Header = () => {
   const { auth, setAuth } = useContext(AuthContext);
@@ -22,8 +23,7 @@ export const Header = () => {
   }
 
   //This currently not working properly - users log out but when refresh logs straight back in
-  // Cookies not clearing properly - worked iin insomnia! figure out
-  const handleLogout = (e) => {
+  const handleLogout = () => {
     setAuth({});
     logout()
       .then((response) => {
@@ -67,11 +67,14 @@ export const Header = () => {
             <>
               <p style={{ margin: 0 }}>Welcome back, {auth.username}!</p>
               <Link to="/account">
-                <Button variant="light">Go to Account</Button>
+                <FaUser color="black" size={18}></FaUser>
               </Link>
-              <Button variant="light" onClick={handleLogout}>
-                Logout
-              </Button>
+
+              <FaSignOutAlt
+                color="black"
+                size={20}
+                onClick={handleLogout}
+              ></FaSignOutAlt>
             </>
           ) : (
             <>
