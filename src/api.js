@@ -91,5 +91,12 @@ export const refreshAccessToken = () => {
 };
 
 export const logout = () => {
-  return api.post(`users/logout`, { withCredentials: true });
+  return api
+    .post(`users/logout`, { withCredentials: true })
+    .then((response) => {
+      // currently nothing on the data in response, cant tell which route the log out
+      // controller is going down??
+      // maybe it's ending up in the next blocks, check where these are going to
+      console.log(response, "< --log out repsonse");
+    });
 };

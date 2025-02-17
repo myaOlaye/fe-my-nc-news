@@ -1,5 +1,6 @@
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
+import { AuthContext } from "../contexts/AuthProvider";
 import { Alert } from "react-bootstrap";
 import InputGroup from "react-bootstrap/InputGroup";
 import { useContext, useState } from "react";
@@ -8,6 +9,7 @@ import { CommentFeedbackContext } from "../contexts/CommentFeedbackContext";
 import { postComment } from "../api";
 
 export const AddComment = ({ article_id }) => {
+  const { auth } = useContext(AuthContext);
   const [commentInput, setCommentInput] = useState("");
   const { setComments } = useContext(CommentsContext);
   const { commentFeedback, setCommentFeedback } = useContext(
@@ -28,7 +30,7 @@ export const AddComment = ({ article_id }) => {
       setCommentFeedback("Your comment is uploading...");
 
       const newComment = {
-        username: "tickle122",
+        username: auth.username,
         body: commentInput,
       };
 
@@ -51,25 +53,32 @@ export const AddComment = ({ article_id }) => {
 
   return (
     <>
-      <InputGroup className="mb-3 container">
-        <Form.Control
-          value={commentInput}
-          id="comment-input"
-          placeholder="Leave a comment"
-          aria-label="Leave a comment"
-          aria-describedby="basic-addon2"
-          onChange={handleChange}
-        />
-        <Button
-          variant="dark"
-          id="button-addon2"
-          onClick={uploadComment}
-          disabled={commentFeedback === "Your comment is uploading..."}
-        >
-          Post
-        </Button>
-      </InputGroup>
-      {commentFeedback && <Alert variant="secondary">{commentFeedback}</Alert>}
+      {auth.username && (
+        <>
+          {" "}
+          <InputGroup className="mb-3 container">
+            <Form.Control
+              value={commentInput}
+              id="comment-input"
+              placeholder="Leave a comment"
+              aria-label="Leave a comment"
+              aria-describedby="basic-addon2"
+              onChange={handleChange}
+            />
+            <Button
+              variant="dark"
+              id="button-addon2"
+              onClick={uploadComment}
+              disabled={commentFeedback === "Your comment is uploading..."}
+            >
+              Post
+            </Button>
+          </InputGroup>
+          {commentFeedback && (
+            <Alert variant="secondary">{commentFeedback}</Alert>
+          )}
+        </>
+      )}
     </>
   );
 };
